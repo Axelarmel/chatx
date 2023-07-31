@@ -13,7 +13,6 @@ const cookieParser = require("cookie-parser");
 const colors = require("colors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { wait } = require("@testing-library/user-event/dist/utils");
 const secret = "mon secret";
 
 app.use(morgan("dev"));
@@ -43,7 +42,6 @@ app.post("/login", async (req, res) => {
       });
       return;
     }
-    wait(4);
     const isPassword = await bcrypt.compare(password, user.password);
 
     if (!isPassword)
