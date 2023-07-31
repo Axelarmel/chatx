@@ -16,9 +16,20 @@ const jwt = require("jsonwebtoken");
 const secret = "mon secret";
 
 app.use(morgan("dev"));
+// app.use(cors());
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+// Middleware pour autoriser les requêtes depuis 'https://association-ff0a3.web.app'
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "*"
+    // "https://association-ff0a3.web.app"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 let port = process.env.PORT || 300;
 // app.subscribe()
 connect();
