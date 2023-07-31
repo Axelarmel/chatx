@@ -20,11 +20,7 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
-    origin: [
-      "https://association-ff0a3.web.app",
-      "http://localhost:3000",
-      "http://192.168.100.57:3000",
-    ],
+    origin: "*",
   })
 );
 let port = process.env.PORT || 300;
